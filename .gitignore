@@ -1,0 +1,5 @@
+*.o
+IQ-T
+
+.idea
+.vscode
