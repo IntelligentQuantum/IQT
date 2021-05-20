@@ -1,5 +1,5 @@
 #!/bin/sh
-# Using external pipe with st, give a IQ-MENU prompt of recent commands,
+# Using external pipe with IQ-T, give a IQ-MENU prompt of recent commands,
 # allowing the user to copy the output of one.
 # xclip required for this script.
 
