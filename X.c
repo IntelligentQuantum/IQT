@@ -17,7 +17,7 @@
 
 char *argv0;
 #include "Arg.h"
-#include "IQ-T.h"
+#include "IQT.h"
 #include "Win.h"
 #include "HB.h"
 
@@ -904,8 +904,8 @@ void xclear(int x1, int y1, int x2, int y2)
 
 void xhints(void)
 {
-	XClassHint class = {opt_name ? opt_name : "IQ-T",
-	                    opt_class ? opt_class : "IQ-T-C"};
+	XClassHint class = {opt_name ? opt_name : "IQT",
+	                    opt_class ? opt_class : "IQT-C"};
 	XWMHints wm = {.flags = InputHint, .input = 1};
 	XSizeHints *sizeh;
 
@@ -1781,7 +1781,7 @@ void xdrawcursor(int cx, int cy, Glyph g, int ox, int oy, Glyph og, Line line, i
 	{
 		switch (win.cursor)
 		{
-            case 7: /* IQ-T extension */
+            case 7: /* IQT extension */
                 g.u = 0x2603; /* snowman (U+2603) */
                 /* FALLTHROUGH */
             case 0: /* Blinking Block */
@@ -1950,7 +1950,7 @@ void xsetmode(int set, unsigned int flags)
 
 int xsetcursor(int cursor)
 {
-	if (!BETWEEN(cursor, 0, 7)) /* 7: IQ-T extension */
+	if (!BETWEEN(cursor, 0, 7)) /* 7: IQT extension */
 		return 1;
 	win.cursor = cursor;
 	return 0;
@@ -2256,9 +2256,9 @@ int resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *ds
 	XrmValue ret;
 
 	snprintf(fullname, sizeof(fullname), "%s.%s",
-			opt_name ? opt_name : "IQ-T", name);
+			opt_name ? opt_name : "IQT", name);
 	snprintf(fullclass, sizeof(fullclass), "%s.%s",
-			opt_class ? opt_class : "IQ-T-C", name);
+			opt_class ? opt_class : "IQT-C", name);
 	fullname[sizeof(fullname) - 1] = fullclass[sizeof(fullclass) - 1] = '\0';
 
 	XrmGetResource(db, fullname, fullclass, &type, &ret);
@@ -2367,7 +2367,7 @@ run:
 		opt_cmd = argv;
 
 	if (!opt_title)
-		opt_title = (opt_line || !opt_cmd) ? "IQ-T" : opt_cmd[0];
+		opt_title = (opt_line || !opt_cmd) ? "IQT" : opt_cmd[0];
 
 	setlocale(LC_CTYPE, "");
 	XSetLocaleModifiers("");

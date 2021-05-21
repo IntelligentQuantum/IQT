@@ -8,7 +8,7 @@ static char *font2[] = { "JoyPixels:pixelsize=10:antialias=true:autohint=true" }
 static int borderpx = 2;
 
 /*
- * What program is execed by IQ-T depends of these precedence rules:
+ * What program is execed by IQT depends of these precedence rules:
  * 1: program passed with -e
  * 2: scroll and/or utmp
  * 3: SHELL environment variable
@@ -48,7 +48,7 @@ int allowwindowops = 0;
 
 /*
  * draw latency range in ms - from new content/keypress/etc until drawing.
- * within this range, IQ-T draws when content stops arriving (idle). mostly it's
+ * within this range, IQT draws when content stops arriving (idle). mostly it's
  * near minlatency, but it waits longer for slow updates to avoid partial draw.
  * low minlatency will tear/flicker more, as it can "detect" idle too early.
  */
@@ -85,14 +85,14 @@ const int boxdraw_braille = 0;
 static int bellvolume = 0;
 
 /* default TERM value */
-char *termname = "IQ-T-256color";
+char *termname = "IQT-256color";
 
 /*
  * spaces per tab
  *
  * When you are changing this value, don't forget to adapt the »it« value in
- * the IQ-T.info and appropriately install the IQ-T.info in the environment where
- * you use this IQ-T version.
+ * the IQT.info and appropriately install the IQT.info in the environment where
+ * you use this IQT version.
  *
  *	it#$tabspaces,
  *
@@ -239,9 +239,9 @@ static MouseShortcut mshortcuts[] =
 #define MODKEY Mod1Mask
 #define TERMMOD (Mod1Mask|ShiftMask)
 
-static char *openurlcmd[] = { "/bin/sh", "-c", "IQ-T-UrlHandler -o", "externalpipe", NULL };
-static char *copyurlcmd[] = { "/bin/sh", "-c", "IQ-T-UrlHandler -c", "externalpipe", NULL };
-static char *copyoutput[] = { "/bin/sh", "-c", "IQ-T-CopyOut", "externalpipe", NULL };
+static char *openurlcmd[] = { "/bin/sh", "-c", "IQT_UrlHandler -o", "externalpipe", NULL };
+static char *copyurlcmd[] = { "/bin/sh", "-c", "IQT_UrlHandler -c", "externalpipe", NULL };
+static char *copyoutput[] = { "/bin/sh", "-c", "IQT_CopyOut", "externalpipe", NULL };
 
 
 static Shortcut shortcuts[] =
@@ -285,7 +285,7 @@ static Shortcut shortcuts[] =
 };
 
 /*
- * Special keys (change & recompile IQ-T.info accordingly)
+ * Special keys (change & recompile IQT.info accordingly)
  *
  * Mask value:
  * * Use XK_ANY_MOD to match the key no matter modifiers state
@@ -300,7 +300,7 @@ static Shortcut shortcuts[] =
  * * > 0: cursor application mode enabled
  * * < 0: cursor application mode disabled
  *
- * Be careful with the order of the definitions because IQ-T searches in
+ * Be careful with the order of the definitions because IQT searches in
  * this table sequentially, so any XK_ANY_MOD must be in the last
  * position for a key.
  */

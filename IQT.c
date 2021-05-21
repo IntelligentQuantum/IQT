@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include <wchar.h>
 
-#include "IQ-T.h"
+#include "IQT.h"
 #include "Win.h"
 
 #if   defined(__linux)
@@ -662,9 +662,9 @@ char *getsel(void)
 		 * Copy and pasting of line endings is inconsistent
 		 * in the inconsistent terminal and GUI world.
 		 * The best solution seems like to produce '\n' when
-		 * something is copied from IQ-T and convert '\n' to
+		 * something is copied from IQT and convert '\n' to
 		 * '\r', when something to be pasted is received by
-		 * IQ-T.
+		 * IQT.
 		 * FIXME: Fix the computer world.
 		 */
 		if ((y < sel.ne.y || lastx >= linelen) &&
@@ -2115,7 +2115,7 @@ void externalpipe(const Arg *arg)
             close(to[0]);
             close(to[1]);
             execvp(((char **)arg->v)[0], (char **)arg->v);
-            fprintf(stderr, "IQ-T: execvp %s\n", ((char **)arg->v)[0]);
+            fprintf(stderr, "IQT: execvp %s\n", ((char **)arg->v)[0]);
             perror("failed");
             exit(0);
 	}
@@ -2428,7 +2428,7 @@ void tcontrolcode(uchar ascii)
             ttywrite(vtiden, strlen(vtiden), 0);
             break;
         case 0x9b:   /* TODO: CSI */
-        case 0x9c:   /* TODO: IQ-T */
+        case 0x9c:   /* TODO: IQT */
             break;
         case 0x90:   /* DCS -- Device Control String */
         case 0x9d:   /* OSC -- Operating System Command */
@@ -2522,7 +2522,7 @@ int eschandle(uchar ascii)
         case '8': /* DECRC -- Restore Cursor */
             tcursor(CURSOR_LOAD);
             break;
-        case '\\': /* IQ-T -- String Terminator */
+        case '\\': /* IQT -- String Terminator */
             if (term.esc & ESC_STR_END)
                 strhandle();
             break;
@@ -2560,7 +2560,7 @@ void tputc(Rune u)
 	/*
 	 * STR sequence must be checked before anything else
 	 * because it uses all following characters until it
-	 * receives a ESC, a SUB, a IQ-T or any other C1 control
+	 * receives a ESC, a SUB, a IQT or any other C1 control
 	 * character.
 	 */
 	if (term.esc & ESC_STR)
@@ -2576,7 +2576,7 @@ void tputc(Rune u)
 		{
 			/*
 			 * Here is a bug in terminals. If the user never sends
-			 * some code to stop the str or esc command, then IQ-T
+			 * some code to stop the str or esc command, then IQT
 			 * will stop responding. But this is better than
 			 * silently failing with unknown characters. At least
 			 * then users will report back.

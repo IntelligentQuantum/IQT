@@ -1,11 +1,11 @@
 !! Transparency (0-1):
-IQ-T.alpha: 0.92
+IQT.alpha: 0.92
 
 !! Set a default font and font size as below:
-IQ-T.font: Monospace-11;
+IQT.font: Monospace-11;
 
-! IQ-T.termname: IQ-T-256color
-! IQ-T.borderpx: 2
+! IQT.termname: IQT-256color
+! IQT.borderpx: 2
 
 !! Set the background, foreground and cursor colors as below:
 

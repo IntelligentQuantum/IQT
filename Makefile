@@ -1,16 +1,16 @@
-# IQ-T - IntelligentQuantum Terminal
+# IQT - IntelligentQuantum Terminal
 # See LICENSE file for copyright and license details.
 .POSIX:
 
 include config.mk
 
-SRC = IQ-T.c X.c BoxDraw.c HB.c
+SRC = IQT.c X.c BoxDraw.c HB.c
 OBJ = $(SRC:.c=.o)
 
-all: options IQ-T
+all: options IQT
 
 options:
-	@echo IQ-T build options:
+	@echo IQT build options:
 	@echo "CFLAGS  = $(STCFLAGS)"
 	@echo "LDFLAGS = $(STLDFLAGS)"
 	@echo "CC      = $(CC)"
@@ -18,47 +18,47 @@ options:
 .c.o:
 	$(CC) $(STCFLAGS) -c $<
 
-IQ-T.o: Config.h IQ-T.h Win.h
-X.o: Arg.h Config.h IQ-T.h Win.h HB.h
-HB.o: IQ-T.h
-BoxDraw.o: Config.h IQ-T.h BoxDrawData.h
+IQT.o: Config.h IQT.h Win.h
+X.o: Arg.h Config.h IQT.h Win.h HB.h
+HB.o: IQT.h
+BoxDraw.o: Config.h IQT.h BoxDrawData.h
 
 $(OBJ): Config.h config.mk
 
-IQ-T: $(OBJ)
+IQT: $(OBJ)
 	$(CC) -o $@ $(OBJ) $(STLDFLAGS)
 
 clean:
-	rm -f IQ-T $(OBJ) IQ-T-$(VERSION).tar.gz *.rej *.orig *.o
+	rm -f IQT $(OBJ) IQT-$(VERSION).tar.gz *.rej *.orig *.o
 
 dist: clean
-	mkdir -p IQ-T-$(VERSION)
+	mkdir -p IQT-$(VERSION)
 	cp -R FAQ LEGACY TODO LICENSE Makefile README config.mk\
-		Config.h IQ-T.info IQ-T.1 Arg.h IQ-T.h Win.h $(SRC)\
-		IQ-T-$(VERSION)
-	tar -cf - IQ-T-$(VERSION) | gzip > IQ-T-$(VERSION).tar.gz
-	rm -rf IQ-T-$(VERSION)
+		Config.h IQT.info IQT.1 Arg.h IQT.h Win.h $(SRC)\
+		IQT-$(VERSION)
+	tar -cf - IQT-$(VERSION) | gzip > IQT-$(VERSION).tar.gz
+	rm -rf IQT-$(VERSION)
 
-install: IQ-T
+install: IQT
 	git submodule init
 	git submodule update
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f IQ-T $(DESTDIR)$(PREFIX)/bin
-	cp -f IQ-T-CopyOut $(DESTDIR)$(PREFIX)/bin
-	cp -f IQ-T-UrlHandler $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/IQ-T
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/IQ-T-CopyOut
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/IQ-T-UrlHandler
+	cp -f IQT $(DESTDIR)$(PREFIX)/bin
+	cp -f IQT_CopyOut $(DESTDIR)$(PREFIX)/bin
+	cp -f IQT_UrlHandler $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/IQT
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/IQT_CopyOut
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/IQT_UrlHandler
 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
-	sed "s/VERSION/$(VERSION)/g" < IQ-T.1 > $(DESTDIR)$(MANPREFIX)/man1/IQ-T.1
-	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/IQ-T.1
-	tic -sx IQ-T.info
-	@echo Please see the README file regarding the terminfo entry of IQ-T.
+	sed "s/VERSION/$(VERSION)/g" < IQT.1 > $(DESTDIR)$(MANPREFIX)/man1/IQT.1
+	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/IQT.1
+	tic -sx IQT.info
+	@echo Please see the README file regarding the terminfo entry of IQT.
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/IQ-T
-	rm -f $(DESTDIR)$(PREFIX)/bin/IQ-T-CopyOut
-	rm -f $(DESTDIR)$(PREFIX)/bin/IQ-T-UrlHandler
-	rm -f $(DESTDIR)$(MANPREFIX)/man1/IQ-T.1
+	rm -f $(DESTDIR)$(PREFIX)/bin/IQT
+	rm -f $(DESTDIR)$(PREFIX)/bin/IQT_CopyOut
+	rm -f $(DESTDIR)$(PREFIX)/bin/IQT_UrlHandler
+	rm -f $(DESTDIR)$(MANPREFIX)/man1/IQT.1
 
 .PHONY: all options clean dist install uninstall

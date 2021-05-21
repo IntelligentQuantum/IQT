@@ -1,6 +1,6 @@
 #include <X11/Xft/Xft.h>
 
-#include "IQ-T.h"
+#include "IQT.h"
 #include "BoxDrawData.h"
 
 /* Rounded non-negative integers division of n / d  */
